@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Heroic Solutions Onboarding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single-column corporate onboarding memo, with an employee badge header and out-of-character notes set apart as console strips. */
+:root {
+  --bg: #f3f4f6;
+  --paper: #ffffff;
+  --ink: #15181e;
+  --muted: #5b6270;
+  --line: #d9dce3;
+  --accent: #c8102e;
+  --accent-soft: #fbe8eb;
+  --ooc-bg: #1b1f27;
+  --ooc-fg: #e6e8ee;
+  --ooc-dim: #9aa2b1;
+  --font-display: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1116; --paper: #171a21; --ink: #e9ebf0; --muted: #a0a7b5; --line: #2a2f3a;
+    --accent: #ff4d63; --accent-soft: #3a1820; --ooc-bg: #0a0c10; --ooc-fg: #e6e8ee; --ooc-dim: #8d95a4;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1116; --paper: #171a21; --ink: #e9ebf0; --muted: #a0a7b5; --line: #2a2f3a;
+  --accent: #ff4d63; --accent-soft: #3a1820; --ooc-bg: #0a0c10; --ooc-fg: #e6e8ee; --ooc-dim: #8d95a4;
+  color-scheme: dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+.wrap {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding-block: 2.5rem 4rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid;
+  gap: 1.75rem;
+}
+
+/* Header badge */
+.badge {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--accent);
+  padding: 1.5rem;
+  display: grid;
+  gap: 0.75rem;
+}
+.brand {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-family: var(--font-display); font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.85rem;
+}
+.mark {
+  width: 1.6rem; height: 1.6rem; flex: none;
+  background: var(--accent);
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
+}
+h1 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.9rem, 6vw, 2.6rem); line-height: 1.1;
+  margin: 0; text-wrap: balance;
+}
+.lede { margin: 0; color: var(--muted); max-width: 60ch; }
+.meta {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem;
+  font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted);
+  border-top: 1px dashed var(--line); padding-top: 0.75rem;
+}
+.meta b { color: var(--ink); font-weight: 500; }
+.status { color: var(--accent); }
+
+/* Sections */
+section { display: grid; gap: 0.6rem; }
+h2 {
+  font-family: var(--font-display); font-weight: 700; font-size: 1.35rem;
+  margin: 0; display: flex; align-items: baseline; gap: 0.6rem; text-wrap: balance;
+}
+h2 .code {
+  font-family: var(--font-mono); font-weight: 500; font-size: 0.75rem;
+  color: var(--accent); letter-spacing: 0.08em;
+}
+p { margin: 0; max-width: 65ch; }
+ul { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.35rem; }
+li::marker { color: var(--accent); }
+strong { font-weight: 600; }
+
+/* App list */
+.apps { list-style: none; padding: 0; display: grid; gap: 0; border: 1px solid var(--line); background: var(--paper); }
+.apps li { display: grid; grid-template-columns: 11rem 1fr; gap: 1rem; padding: 0.75rem 1rem; border-top: 1px solid var(--line); }
+.apps li:first-child { border-top: 0; }
+.apps .name { font-weight: 600; }
+.apps .desc { color: var(--muted); min-width: 0; }
+.tag {
+  display: inline-block; margin-left: 0.4rem; padding: 0 0.4rem;
+  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase;
+  background: var(--accent-soft); color: var(--accent); vertical-align: 0.1em;
+}
+@media (max-width: 34rem) {
+  .apps li { grid-template-columns: 1fr; gap: 0.15rem; }
+}
+
+/* Out-of-character strips */
+.ooc {
+  background: var(--ooc-bg); color: var(--ooc-fg);
+  padding: 1rem 1.15rem; display: grid; gap: 0.4rem;
+  font-size: 0.98rem;
+}
+.ooc .label {
+  font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ooc-dim);
+}
+.ooc ul li::marker { color: var(--ooc-dim); }
+
+/* NetWatch notice */
+.netwatch {
+  border: 2px solid var(--accent); padding: 1rem 1.15rem; display: grid; gap: 0.4rem;
+  background: var(--paper);
+}
+.netwatch .head {
+  font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); font-size: 0.85rem;
+}
+
+footer {
+  font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted);
+  border-top: 1px solid var(--line); padding-top: 1rem;
+}
+</style>
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="badge">
+    <div class="brand"><span class="mark" aria-hidden="true"></span>Heroic Solutions</div>
+    <h1>Welcome aboard, contractor.</h1>
+    <p class="lede">You've been cleared to work for Heroic Solutions. This briefing covers how to sign in, what tools you get, and the rules of employment.</p>
+    <div class="meta">
+      <span>DOC <b>HS-ONB-01</b></span>
+      <span>CLEARANCE <b>Contractor</b></span>
+      <span class="status">STATUS: Systems in development</span>
+    </div>
+  </header>
+
+  <div class="ooc">
+    <span class="label">Out of character</span>
+    <p>This is the plan for our campaign's website. It's still being built, so nothing is live yet. I'll send your login details when it's ready.</p>
+  </div>
+
+  <section>
+    <h2><span class="code">01</span>Signing in</h2>
+    <ul>
+      <li>You'll get your own <strong>Heroic Solutions account</strong> from the DM.</li>
+      <li>Sign in, and you land on your <strong>My Apps</strong> page.</li>
+      <li>My Apps shows <strong>only the apps you have access to</strong>. Yours may differ from other players'.</li>
+      <li>The sign-in page is a real Microsoft sign-in page, dressed up as Heroic Solutions.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="code">02</span>Your apps</h2>
+    <ul class="apps">
+      <li><span class="name">Heroic AI</span><span class="desc">Your personal AI companion. See section 04.</span></li>
+      <li><span class="name">Character creation</span><span class="desc">Build your character. Hover any option for a short explanation, or click it for the full details.</span></li>
+      <li><span class="name">Shop</span><span class="desc">Spend your credits on gear and cyberware.</span></li>
+      <li><span class="name">Map</span><span class="desc">The campaign map of the city.</span></li>
+      <li><span class="name">Mail</span><span class="desc">Your in-game inbox. Expect contacts, job offers and a lot of adverts.</span></li>
+      <li><span class="name">Foundry VTT</span><span class="desc">The virtual tabletop we play on. Only switched on during sessions.</span></li>
+    </ul>
+    <p>Some apps and features are locked until you pay for them. See section 03.</p>
+  </section>
+
+  <section>
+    <h2><span class="code">03</span>Session fees</h2>
+    <ul>
+      <li>Each session, you can pay fees in <strong>in-game credits</strong> from your character's account.</li>
+      <li>Fees unlock things:
+        <ul>
+          <li>extra apps on your My Apps page</li>
+          <li>hidden features inside apps</li>
+          <li>upgrades for your AI companion, including a custom personality</li>
+        </ul>
+      </li>
+      <li>Stop paying, and those things can be taken away again.</li>
+    </ul>
+    <div class="ooc">
+      <span class="label">Out of character</span>
+      <p><strong>No real money, ever.</strong> All fees are fake in-game credits. If anything ever asks you for a real card or payment, it isn't from me.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="code">04</span>Your AI companion</h2>
+    <ul>
+      <li>Everyone gets their <strong>own companion</strong>, with its own name, personality and memory of you.</li>
+      <li>Ask it about <strong>lore, gangs and local news</strong>.</li>
+      <li>It <strong>won't help with puzzles</strong>. Those are yours to crack.</li>
+      <li>Pay the right fee and you can <strong>customise its personality</strong>.</li>
+      <li>If it doesn't know something, it may get back to you later.</li>
+    </ul>
+    <div class="netwatch">
+      <span class="head">Notice: NetWatch monitors all traffic</span>
+      <p>Assume someone is always listening.</p>
+      <p><strong>Out of character:</strong> I (the DM) can read your companion chats, and I can step in and reply as your companion at any time.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="code">05</span>Your account is live</h2>
+    <ul>
+      <li>Your credits, XP and items are <strong>tracked on the site</strong> and controlled by the DM.</li>
+      <li>What happens in the game can change them. This is Night City: watch your pockets.</li>
+      <li>Check your balance and inventory now and then.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="code">06</span>Ground rules</h2>
+    <ul>
+      <li><strong>Don't share your login</strong> with anyone, including other players.</li>
+      <li>Use your account for the game only.</li>
+      <li>Rules explanations on the site are written in our own words. For the full rules, use the Core Rulebook.</li>
+      <li>Questions about the site? Ask the DM, not the AI.</li>
+    </ul>
+  </section>
+
+  <footer>Heroic Solutions. Solutions for heroes. All activity is logged.</footer>
+
+</div>
+</body>
+</html>
